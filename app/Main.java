@@ -65,6 +65,9 @@ public class Main {
                         break;
 
                     case "4":
+                        for (Task t : todoList) {
+                                System.out.println(t);
+                            }
                         System.out.print("Podaj indeks zadania do wykonania (od 0): ");
                         int index = Integer.parseInt(scanner.nextLine());
                         if (index >= 0 && index < todoList.size()) {

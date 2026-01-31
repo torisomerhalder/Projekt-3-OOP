@@ -16,7 +16,7 @@ public abstract class Task implements Storable {
         }
         this.id = id;
         this.description = description;
-        this.isDone = false; //domyślnie zadanie jest nieewykoane
+        this.isDone = false; //domyślnie zadanie jest niewykonane
     }
     public void setDone(boolean done) {
         isDone = done;
