@@ -1,0 +1,40 @@
+classDiagram
+    class Task {
+        -int id
+        -String description
+        -boolean isDone
+        +Task(int, String)
+        +void setDone(boolean)
+        +boolean isDone()
+        +int getId()
+        +String getDescription()
+        +<<abstract>> Task makeCopy()
+        +void save()
+        +String toString()
+        +boolean equals(Object)
+        +int hashCode()
+    }
+    
+    class WorkTask {
+        -LocalDate deadline
+        +WorkTask(int, String, LocalDate)
+        +Task makeCopy()
+        +String toString()
+    }
+    
+    class PersonalTask {
+        -String priority
+        +PersonalTask(int, String, String)
+        +Task makeCopy()
+        +String toString()
+    }
+    
+    class TaskValidationException {
+        +TaskValidationException(String)
+    }
+    
+    Task <|-- WorkTask
+    Task <|-- PersonalTask
+    Task ..|> Storable : implements
+    Task ..|> TaskValidationException
+    
