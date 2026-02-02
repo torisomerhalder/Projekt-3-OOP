@@ -54,29 +54,48 @@ public class Main {
                         break;
 
                     case "3":
-                        System.out.println("\n--- TWOJA LISTA ---");
+                        System.out.println("\n--- TWOJA LISTA ZADAŃ ---");
                         if (todoList.isEmpty()) {
-                            System.out.println("(Lista jest pusta)");
+                            System.out.println("(Brak zadań)");
+                        } else {
+                            for (int i = 0; i < todoList.size(); i++) {
+                                System.out.printf("%d: %s%n", i, todoList.get(i));
+                            }
+                        }
+                        break;
+
+
+                    case "4":
+                        System.out.println("\n--- DOSTĘPNE ZADANIA ---");
+                        if (todoList.isEmpty()) {
+                            System.out.println("(Lista pusta)");
                         } else {
                             for (Task t : todoList) {
                                 System.out.println(t);
                             }
                         }
-                        break;
+                        System.out.print("\nPodaj ID zadania do wykonania: ");
+                        int idToComplete = Integer.parseInt(scanner.nextLine());
 
-                    case "4":
+                        List<Task> foundTasks = new ArrayList<>();
                         for (Task t : todoList) {
-                                System.out.println(t);
+                            if (t.getId() == idToComplete) {
+                                foundTasks.add(t);
                             }
-                        System.out.print("Podaj indeks zadania do wykonania (od 0): ");
-                        int index = Integer.parseInt(scanner.nextLine());
-                        if (index >= 0 && index < todoList.size()) {
-                            todoList.get(index).setDone(true);
-                            System.out.println("Zadanie wykonane!");
+                        }
+
+                        if (!foundTasks.isEmpty()) {
+                            System.out.println("\n Znaleziono i wykonano:");
+                            for (Task t : foundTasks) {
+                                t.setDone(true);
+                                System.out.println("  " + t);
+                            }
+                            System.out.println("Gotowe!");
                         } else {
-                            System.out.println("Nie ma takiego zadania.");
+                            System.out.println(" Nie znaleziono zadania o ID: " + idToComplete);
                         }
                         break;
+
 
                     case "0":
                         isRunning = false;
