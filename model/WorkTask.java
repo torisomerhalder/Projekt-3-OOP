@@ -3,7 +3,7 @@ package model;
 import java.time.LocalDate;
 
 public class WorkTask extends Task {
-    private LocalDate deadline;
+    public LocalDate deadline;
 
     // KONSTRUKTOR
     public WorkTask(int id, String description, LocalDate deadline) throws TaskValidationException {

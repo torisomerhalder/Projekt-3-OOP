@@ -1,0 +1,3 @@
+type,id,description,isDone,deadline,priority
+WORK,2,abba,false,2026-04-29,
+PERSONAL,1,abba,true,,L

@@ -2,12 +2,23 @@ package model;
 
 public class PersonalTask extends Task {
 
-    private String priority; // np. "Wysoki", "Niski"
+    public String priority; // np. "Wysoki", "Niski"
 
     public PersonalTask(int id, String description, String priority) throws TaskValidationException {
-        super(id, description);
-        this.priority = priority;
+    super(id, description);
+    
+    // Walidacja priorytetu - case insensitive + trim
+    String prio = priority != null ? priority.trim().toUpperCase() : "";
+    
+    if (!prio.equals("HIGH") && !prio.equals("LOW") && !prio.equals("H") && !prio.equals("L") && !prio.equals("MAŁY") && !prio.equals("NISKI")) {
+        throw new TaskValidationException(
+            "Nieprawidłowy priorytet! Dopuszczalne: High/H/high/h, Low/L/low/l. Podano: '" + priority + "'"
+        );
     }
+    
+    this.priority = prio; // Zapisujemy jako UPPERCASE dla spójności
+}
+
 
     @Override
     public Task makeCopy() {
